@@ -50,6 +50,7 @@ endmodule
 
 ```
 Test Bench
+
 '''
 module rca_4_bit_tb;
 
@@ -73,13 +74,13 @@ begin
     $finish;
 end
 endmodule
+
 '''
 # Output Waveform
 
 ------------------------------PASTE THE OUTPUT---------------------------------
 
 # 4 bit Ripple counter using Function
-
 ```
 module ripple_counter_4_bit( clk, rst, Q );
 input clk, rst;
@@ -101,8 +102,11 @@ endfunction
 
 endmodule
 '''
+
 Test Bench
+
 '''
+
 module ripple_counter_4_bit_tb;
 
 reg clk_t,rst_t;
@@ -121,7 +125,9 @@ begin
 end
 always #50 clk_t = ~clk_t;
 endmodule
+
 '''
+
 # Output Waveform
 ------------------------------PASTE THE OUTPUT---------------------------------
 
