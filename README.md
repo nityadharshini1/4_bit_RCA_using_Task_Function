@@ -49,87 +49,91 @@ end
 endmodule
 
 ```
-Test Bench
 
-'''
+4-Bit Ripple Carry Adder Testbench
+
 module rca_4_bit_tb;
 
-reg [3:0] a_t,b_t;
-reg cin_t;
-wire [3:0] sum_t;
-wire cout_t;
+    reg [3:0] a_t, b_t;
+    reg cin_t;
+    wire [3:0] sum_t;
+    wire cout_t;
 
-rca_4_bit dut (a_t,b_t,cin_t,sum_t,cout_t);
+    rca_4_bit dut (a_t, b_t, cin_t, sum_t, cout_t);
 
-initial
-begin
-    a_t = 4'b1010;
-    b_t = 4'b0110;
-    cin_t = 1'b0;
-    #10;
-    a_t = 4'b0111;
-    b_t = 4'b1100;
-    cin_t = 1'b1;
-    #10;
-    $finish;
-end
+    initial
+    begin
+        a_t = 4'b1010;
+        b_t = 4'b0110;
+        cin_t = 1'b0;
+
+        #10;
+
+        a_t = 4'b0111;
+        b_t = 4'b1100;
+        cin_t = 1'b1;
+
+        #10 $finish;
+    end
+
 endmodule
 
-'''
 # Output Waveform
+![WhatsApp Image 2026-03-19 at 4 11 24 PM](https://github.com/user-attachments/assets/4eb68bc3-3105-409b-a075-11cd565fa136)
 
-------------------------------PASTE THE OUTPUT---------------------------------
+
 
 # 4 bit Ripple counter using Function
-```
-module ripple_counter_4_bit( clk, rst, Q );
-input clk, rst;
-output reg [3:0] Q;
-always @(posedge clk or posedge rst) 
-begin
-    if (rst)
-        Q <= 4'b0000;
-    else
-        Q <= count(Q);
-end
 
-function [3:0] count;
-input [3:0] q;
-begin
-    count = q +1'b1;
-end
-endfunction
+
+module ripple_counter_4_bit(clk, rst, Q);
+    input clk, rst;
+    output reg [3:0] Q;
+
+    always @(posedge clk or posedge rst) 
+    begin
+        if (rst)
+            Q <= 4'b0000;
+        else
+            Q <= count(Q);
+    end
+
+    function [3:0] count;
+        input [3:0] q;
+        begin
+            count = q + 1'b1;
+        end
+    endfunction
 
 endmodule
-'''
 
 Test Bench
-
-'''
+4-Bit Ripple Counter Testbench
 
 module ripple_counter_4_bit_tb;
 
-reg clk_t,rst_t;
-wire [3:0] q_t;
+    reg clk_t, rst_t;
+    wire [3:0] q_t;
 
-ripple_counter_4_bit dut (clk_t, rst_t, q_t);
+    ripple_counter_4_bit dut (clk_t, rst_t, q_t);
 
-initial
-begin
-    rst_t = 1'b1;
-    clk_t = 1'b0;
-    #100;
-    rst_t = 1'b0;
-    #1600;
-    $finish;
-end
-always #50 clk_t = ~clk_t;
+    initial
+    begin
+        rst_t = 1'b1;
+        clk_t = 1'b0;
+
+        #100 rst_t = 1'b0;   // Release reset
+
+        #1600 $finish;
+    end
+
+    always #50 clk_t = ~clk_t;
+
 endmodule
 
-'''
 
 # Output Waveform
-------------------------------PASTE THE OUTPUT---------------------------------
+![WhatsApp Image 2026-03-19 at 4 17 53 PM](https://github.com/user-attachments/assets/719133c4-de42-4c68-9f04-1092c82eb644)
 
 # Conclusion
 In this experiment, a 4-bit-Ripple-counter-using-Function-and-4-bit-Ripple-Adder-using-task was successfully designed and simulated using Verilog HDL.
